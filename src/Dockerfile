@@ -1,3 +1,12 @@
-version https://git-lfs.github.com/spec/v1
-oid sha256:e083f0d9c82e643403eccc574961e17889f3a13bc554576a5481a1b3ad596860
-size 207
+FROM python:3.10.11
+
+WORKDIR /app
+COPY . /app
+RUN pip install --upgrade pip
+RUN pip install --no-cache-dir -r requirements.txt
+EXPOSE 5000
+RUN chmod +x entrypoint.sh
+CMD [ "bash", "entrypoint.sh" ]
+
+
+    
