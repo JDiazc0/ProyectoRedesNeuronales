@@ -11,6 +11,22 @@ api = Api(app)
 #Cargar los modelos
 modelo = keras.models.load_model('modelo_prediccion')
 
+class intro(Resource):
+    """
+    Función para la ruta raíz
+    """
+    def get(self):
+        """
+        Método GET
+        """
+        return {'message': 'Bienvenido a la API de Redes Neuronitas'}, 200
+
+    def post(self):
+        """
+        Método POST
+        """
+        return {'message': 'Bienvenido a la API de Redes Neuronitas'}, 200
+    
 class Neuronitas(Resource):
     """
     Función para la ruta /neuronitas
@@ -34,6 +50,7 @@ class predict(Resource):
             return {'result': f'El número es: {np.argmax(res[0])}',
                     'total': f'El total de predicciones es {res} '}, 200
 
+api.add_resource(intro, '/') # Ruta raíz
 api.add_resource(Neuronitas, '/neuronitas')
 api.add_resource(predict, '/predict') # Ruta /predict
 
